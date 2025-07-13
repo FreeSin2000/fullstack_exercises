@@ -3,8 +3,11 @@ sequenceDiagram
     participant browser
     participant server
 
-    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note payload:note=hello
-    activate server
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
+    Note left of server: note=...
+
+    activate server 
+    Note left of server: The server append new note
     server-->>browser: HTTP/1.1 302 Found / Redirect URL
     deactivate server
 
