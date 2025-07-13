@@ -3,7 +3,12 @@ sequenceDiagram
     participant browser
     participant server
 
-    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note payload:note=hello
+    activate server
+    server-->>browser: HTTP/1.1 302 Found / Redirect URL
+    deactivate server
+
+    browser->>server: POST GET https://studies.cs.helsinki.fi/exampleapp/exampleapp/notes
     activate server
     server-->>browser: HTML document
     deactivate server
